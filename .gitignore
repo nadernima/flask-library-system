@@ -1,0 +1,18 @@
+# Virtual environments
+.venv/
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment / instance data
+.env
+instance/
+
+# Migrations (generated)
+migrations/
+
+# IDE files
+.DS_Store
+.vscode/

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Books{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+  <h2>Books</h2>
+  {% if current_user.role in ['librarian','admin'] %}
+  <a class="btn btn-success" href="{{ url_for('books.create_book') }}">Add Book</a>
+  {% endif %}
+</div>
+<form class="input-group my-3" method="get">
+  <input class="form-control" name="q" placeholder="Search by title, author, language, ISBN" value="{{ q }}">
+  <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+<table class="table table-striped">
+  <thead><tr><th>Title</th><th>Author</th><th>Year</th><th>Lang</th><th>Available</th><th></th></tr></thead>
+  <tbody>
+  {% for b in books %}
+    <tr>
+      <td><a href="{{ url_for('books.detail', book_id=b.id) }}">{{ b.title }}</a></td>
+      <td>{{ b.author }}</td>
+      <td>{{ b.year }}</td>
+      <td>{{ b.language }}</td>
+      <td>{{ b.copies_available }}/{{ b.copies_total }}</td>
+      <td>
+        {% if b.copies_available > 0 %}
+        <a class="btn btn-primary btn-sm" href="{{ url_for('loans.checkout', book_id=b.id) }}">Check out</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

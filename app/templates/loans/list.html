@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}My Loans{% endblock %}
+{% block content %}
+<h2>My Loans</h2>
+<table class="table table-striped">
+  <thead><tr><th>Book</th><th>Checked out</th><th>Due</th><th>Returned</th><th></th></tr></thead>
+  <tbody>
+  {% for l in loans %}
+  <tr>
+    <td><a href="{{ url_for('books.detail', book_id=l.book.id) }}">{{ l.book.title }}</a></td>
+    <td>{{ l.checkout_date.strftime('%Y-%m-%d') }}</td>
+    <td>{{ l.due_date.strftime('%Y-%m-%d') }}</td>
+    <td>{% if l.return_date %}{{ l.return_date.strftime('%Y-%m-%d') }}{% else %}-{% endif %}</td>
+    <td>
+      {% if not l.return_date %}
+      <a class="btn btn-sm btn-success" href="{{ url_for('loans.return_book', loan_id=l.id) }}">Return</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

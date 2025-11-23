@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ 'New' if mode=='create' else 'Edit' }} Book{% endblock %}
+{% block content %}
+<h2>{{ 'New' if mode=='create' else 'Edit' }} Book</h2>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="row">
+    <div class="col-md-6 mb-3">{{ form.title.label }} {{ form.title(class="form-control") }}</div>
+    <div class="col-md-6 mb-3">{{ form.author.label }} {{ form.author(class="form-control") }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mb-3">{{ form.year.label }} {{ form.year(class="form-control") }}</div>
+    <div class="col-md-4 mb-3">{{ form.language.label }} {{ form.language(class="form-control") }}</div>
+    <div class="col-md-4 mb-3">{{ form.isbn.label }} {{ form.isbn(class="form-control") }}</div>
+  </div>
+  <div class="mb-3">{{ form.description.label }} {{ form.description(class="form-control") }}</div>
+  <div class="row">
+    <div class="col-md-6 mb-3">{{ form.copies_total.label }} {{ form.copies_total(class="form-control") }}</div>
+    <div class="col-md-6 mb-3">{{ form.copies_available.label }} {{ form.copies_available(class="form-control") }}</div>
+  </div>
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

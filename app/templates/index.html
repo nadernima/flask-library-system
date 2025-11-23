@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Library Home{% endblock %}
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">Welcome to the Library</h1>
+    <p class="col-md-8 fs-4">Search and manage books, members and loans.</p>
+    {% if not current_user.is_authenticated %}
+    <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg">Sign in</a>
+    {% else %}
+    <a href="{{ url_for('books.list_books') }}" class="btn btn-primary btn-lg">Browse Books</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

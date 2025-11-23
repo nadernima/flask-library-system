@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{ book.title }}{% endblock %}
+{% block content %}
+<h2>{{ book.title }}</h2>
+<p><strong>Author:</strong> {{ book.author }}</p>
+<p><strong>Year:</strong> {{ book.year }}</p>
+<p><strong>Language:</strong> {{ book.language }}</p>
+<p><strong>ISBN:</strong> {{ book.isbn }}</p>
+<p>{{ book.description }}</p>
+<p><strong>Availability:</strong> {{ book.copies_available }} / {{ book.copies_total }}</p>
+<div class="mt-3">
+  {% if book.copies_available > 0 %}
+  <a href="{{ url_for('loans.checkout', book_id=book.id) }}" class="btn btn-primary">Check out</a>
+  {% endif %}
+  {% if current_user.role in ['librarian','admin'] %}
+  <a href="{{ url_for('books.edit', book_id=book.id) }}" class="btn btn-secondary">Edit</a>
+  <form method="post" action="{{ url_for('books.delete', book_id=book.id) }}" class="d-inline" onsubmit="return confirm('Delete this book?');">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
