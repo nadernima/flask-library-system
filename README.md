@@ -11,12 +11,6 @@ A full-stack Flask application for managing books, members, and loans with role-
 - API: JSON endpoints documented in `docs/api.md`
 - Testing: pytest unit/integration coverage for auth, books, loans
 
-## Tech Stack
-- Python, Flask, Flask-Login, Flask-WTF, Flask-SQLAlchemy
-- SQLite (default) with SQLAlchemy ORM
-- Bootstrap 5 (Jinja templates)
-- pytest for testing
-
 ## Project Structure
 ```
 flask_library_system/
