@@ -42,51 +42,48 @@ flask_library_system/
 └── seed.py                  # Demo data seeder (drops/recreates DB)
 ```
 
-## Setup
-Prereqs: Python 3.10+ recommended, `pip`, and `python3 -m venv`.
+## Quickstart (fast path)
+Prereqs: Python 3.10+, `pip`, `python3 -m venv`.
 
-1) Clone and enter the project
-```bash
-git clone https://github.com/nadernima/flask-library-system.git
-cd flask-library-system
-```
+1) Clone and enter the project  
+   ```bash
+   git clone https://github.com/nadernima/flask-library-system.git
+   cd flask-library-system
+   ```
+2) Create & activate a virtualenv  
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   ```
+3) Install dependencies  
+   ```bash
+   pip install -r requirements.txt
+   ```
+4) Create the database with demo data (drops/recreates tables)  
+   ```bash
+   python seed.py
+   ```
+5) Run the app  
+   ```bash
+   flask run
+   ```
+   Open http://127.0.0.1:5000
 
-2) Create and activate a virtualenv
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-```
+That’s it. Login with the default accounts below.
 
-3) Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-4) Configure environment (create `.env`)
+## Configuration (optional)
+You can skip this for local dev; sensible defaults are baked in. To customize, create a `.env` file:
 ```
 FLASK_APP=manage.py
 FLASK_ENV=development
 SECRET_KEY=dev-secret-change-me
-DATABASE_URL=sqlite:///instance/library.db
+DATABASE_URL=sqlite:///instance/library.db   # defaults to sqlite:///library.db if unset
 ```
-`DATABASE_URL` defaults to `sqlite:///library.db` if unset; using `instance/` keeps the DB out of version control.
 
-## Database Initialization
-Choose one:
-- Seed with demo data (drops/recreates tables):
-  ```bash
-  python seed.py
-  ```
-- Start empty (no seed):
-  ```bash
-  flask shell -c "from app import db, create_app; app=create_app(); app.app_context().push(); db.create_all()"
-  ```
-
-## Run the App
+### Starting with an empty database (no demo data)
 ```bash
-flask run
+flask shell -c "from app import db, create_app; app=create_app(); app.app_context().push(); db.create_all()"
 ```
-App runs at http://127.0.0.1:5000.
 
 ### Default Accounts (from `seed.py`)
 - admin: `admin@example.com` / `adminpass`
