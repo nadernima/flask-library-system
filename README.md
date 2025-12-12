@@ -99,7 +99,7 @@ flask_library_system/
 ```
 
 ## API Docs
-See `docs/openapi.yaml`.
+See `docs/api.md`.
 
 ## Database Schema
 - See `docs/schema.md` for table definitions and relationships.
