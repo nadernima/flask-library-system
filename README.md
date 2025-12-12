@@ -98,7 +98,6 @@ Uses in-memory SQLite via fixtures (`tests/conftest.py`).
 
 ## API Documentation
 - Markdown reference: `docs/api.md`
-- Legacy OpenAPI spec: `docs/openapi.yaml` (optional)
 
 ## Database Schema
 See `docs/schema.md` for tables and relationships.
