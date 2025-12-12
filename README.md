@@ -34,8 +34,7 @@ flask_library_system/
 │   ├── templates/           # Jinja templates
 │   └── static/              # CSS
 ├── docs/
-│   ├── api.md               # API reference (markdown)
-│   └── openapi.yaml         # Legacy OpenAPI spec (optional)
+│   └── api.md               # API reference (markdown)
 ├── tests/                   # pytest suites
 ├── manage.py                # Flask entrypoint + migrations hook
 ├── requirements.txt
