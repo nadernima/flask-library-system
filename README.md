@@ -10,7 +10,7 @@ A full‑stack Flask app for managing a small library: books, members, loans, se
 - Powerful search (title/author/language/year/ISBN)
 - SQLite + SQLAlchemy + Flask-Migrate
 - Bootstrap UI with Jinja templates
-- REST-ish JSON API endpoints (documented in `docs/openapi.yaml`)
+- REST-ish JSON API endpoints (documented in `docs/api.md`)
 - Unit/integration tests via pytest
 
 ## Quickstart
@@ -36,11 +36,14 @@ DATABASE_URL=sqlite:///instance/library.db
 ```
 
 ### 4) Initialize the database
-```bash
-flask db upgrade
-# seed an admin & sample data
-python seed.py
-```
+- Seed with demo data (drops/recreates tables):  
+  ```bash
+  python seed.py
+  ```
+- Or start empty:  
+  ```bash
+  flask shell -c "from app import db, create_app; app = create_app(); app.app_context().push(); db.create_all()"
+  ```
 
 ### 5) Run
 ```bash
@@ -90,6 +93,7 @@ flask_library_system/
 ├── requirements.txt
 ├── seed.py
 ├── docs/
+│   ├── api.md
 │   └── openapi.yaml
 └── tests/
     ├── conftest.py
